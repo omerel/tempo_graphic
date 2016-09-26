@@ -33,7 +33,7 @@ void init()
 	// optional set random values
 	srand(time(0));
 
-	// set ground
+	// init ground - optional
 	for (i = 0; i<GSIZE; i++)
 		for (j = 0; j<GSIZE; j++)
 			ground[i][j] = 0;
