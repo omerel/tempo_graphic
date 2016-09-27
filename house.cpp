@@ -11,10 +11,10 @@
 #define WIDTH 600
 
 struct rgb {
-	double r,
-	double g,
+	double r;
+	double g;
 	double b
-} rgb;
+};
 
 const int GSIZE = 150;  			// size to paint the ground
 const double PI = 4 * atan(1.0);  	// define PI
@@ -195,8 +195,8 @@ void DrawFront()
 {
 	// Center wing
 	glPushMatrix();
-		glScaled(1,15,1);
-		DrawCylinder(60, 25, 25, 1,0.5*PI, 1.5*PI)
+		glScaled(1,20,1);
+		DrawCylinder(60, 5, 5, 1,0.5*PI, 1.5*PI)
 	glPopMatrix();
 
 	// Door
@@ -204,23 +204,33 @@ void DrawFront()
 	glColor3d(1, 0, 0);
 	// TODO: put texture
 	glPushMatrix();
-		glTranslated(-0.25,0,-25);
-		glScaled(0.5,1,1);
+		glTranslated(-2,0,-20);
+		glScaled(4,8,1);
 		DrawSquare();
 	glPopMatrix();
 	glColor3d(wallsColor.r, wallsColor.g, wallsColor.b);
 
 	// Left wing
 	glPushMatrix();
-		glTranslated(0,2,0);
-		glScaled(1,13,1);
+		glTranslated(-25,0,0);
+		glScaled(20,20,1);
 		DrawSquare();
 	glPopMatrix();
 
 	// Windows
+	glPushMatrix();
+		glTranslated(-12,0,-20);
+		glScaled(4,4,1);
+		DrawSquare();
+	glPopMatrix();
 
 	// Right wing
-
+	glPushMatrix();
+		glTranslated(20,0,0);
+		glScaled(20,20,1);
+		DrawSquare();
+	glPopMatrix();
+	
 	// Windows
 
 	// Pillars
