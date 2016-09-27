@@ -147,7 +147,6 @@ void DrawCube()
 
 void DrawPillar()
 {
-		glColor3d(wallsColor.r, wallsColor.g, wallsColor.b);
 
 		// Bottom
 		
@@ -183,16 +182,43 @@ void DrawPillar()
 		glPopMatrix();
 }
 
-// addone to display
-void ShowAll()
+void DrawFront()
 {
-	glEnable(GL_DEPTH_TEST);
-	// start of the transformations
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
+	// Center wing
+	glPushMatrix();
+		glScaled(1,13,1);
+		DrawCylinder(60, 25, 25, 1,0.5*PI, 1.5*PI)
+	glPopMatrix();
 
-	DrawGround();
-	// (6) PUT CONTENT HERE
+	// Door
+
+	glColor3d(1, 0, 0);
+	// TODO: put texture
+	glPushMatrix();
+		glTranslated(0,0,-25);
+		
+		// front
+		glBegin(GL_POLYGON);
+			glVertex3d(-0.5, 1, 0);
+			glVertex3d(0.5, 1, 0);
+			glVertex3d(1, -1, 0);
+			glVertex3d(-1, -1, 0);
+		glEnd();
+	glPopMatrix();
+	glColor3d(wallsColor.r, wallsColor.g, wallsColor.b);
+
+	// Left wing
+	glPushMatrix();
+		glTranslated(0,2,0);
+		glScaled(1,13,1);
+		DrawCube()
+	glPopMatrix();
+
+	// Windows
+
+	// Right wing
+
+	// Windows
 
 	// Pillars
 	glPushMatrix();
@@ -204,6 +230,35 @@ void ShowAll()
 		glTranslated(10,0,-40);
 		DrawPillar();
 	glPopMatrix();
+}
+
+void DrawExterior()
+{
+	glColor3d(wallsColor.r, wallsColor.g, wallsColor.b);
+	DrawFront();
+
+}
+void DrawHouse()
+{
+	// Exterior
+	DrawExterior();
+	
+}
+
+
+// addone to display
+void ShowAll()
+{
+	glEnable(GL_DEPTH_TEST);
+	// start of the transformations
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+
+	DrawGround();
+	// (6) PUT CONTENT HERE
+
+	// Draw house
+	
 }
 
 // refresh
