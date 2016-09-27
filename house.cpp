@@ -14,7 +14,7 @@ struct rgb {
 	double r,
 	double g,
 	double b
-} rgd;
+} rgb;
 
 const int GSIZE = 150;  			// size to paint the ground
 const double PI = 4 * atan(1.0);  	// define PI
@@ -97,6 +97,15 @@ void DrawCylinder(int n, double topr, double bottomr,int spaces,double startAngl
 			glVertex3d(bottomr*sin(alpha),0,bottomr*cos(alpha));
 		glEnd();
 	}
+}
+void DrawSquare()
+{
+	glBegin(GL_POLYGON);
+		glVertex3d(-1, 1, 1);
+		glVertex3d(1, 1, 1);
+		glVertex3d(1, -1, 1);
+		glVertex3d(-1, -1, 1);
+	glEnd();
 }
 
 void DrawCube()
@@ -186,7 +195,7 @@ void DrawFront()
 {
 	// Center wing
 	glPushMatrix();
-		glScaled(1,13,1);
+		glScaled(1,15,1);
 		DrawCylinder(60, 25, 25, 1,0.5*PI, 1.5*PI)
 	glPopMatrix();
 
@@ -195,15 +204,9 @@ void DrawFront()
 	glColor3d(1, 0, 0);
 	// TODO: put texture
 	glPushMatrix();
-		glTranslated(0,0,-25);
-		
-		// front
-		glBegin(GL_POLYGON);
-			glVertex3d(-0.5, 1, 0);
-			glVertex3d(0.5, 1, 0);
-			glVertex3d(1, -1, 0);
-			glVertex3d(-1, -1, 0);
-		glEnd();
+		glTranslated(-0.25,0,-25);
+		glScaled(0.5,1,1);
+		DrawSquare();
 	glPopMatrix();
 	glColor3d(wallsColor.r, wallsColor.g, wallsColor.b);
 
@@ -211,7 +214,7 @@ void DrawFront()
 	glPushMatrix();
 		glTranslated(0,2,0);
 		glScaled(1,13,1);
-		DrawCube()
+		DrawSquare();
 	glPopMatrix();
 
 	// Windows
