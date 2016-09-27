@@ -12,11 +12,11 @@
 
 const int GSIZE = 150;  			// size to paint the ground
 const double PI = 4 * atan(1.0);  	// define PI
-// (1) PUT  CONST HERE
+									// (1) PUT  CONST HERE
 
-// (2) PUT define HERE 
+									// (2) PUT define HERE 
 
-// (3) PUT GLOBAL varibles HERE 
+									// (3) PUT GLOBAL varibles HERE 
 double eyex = 2, eyez = 35, eyey = 30; // camera - eye
 double dirx, diry, dirz;			// camera - look at
 double dx = 0, dy = 0, dz = 0; 				// change position 
@@ -60,7 +60,7 @@ void DrawGround()
 
 	glColor3d(0.5, 1, 0.5);
 
-	
+
 	for (i = 0; i<GSIZE - 1; i++)
 		for (j = 0; j<GSIZE - 1; j++)
 		{
@@ -116,6 +116,12 @@ void idle() // WRITE OFFSETS IN THIS METHOD
 	eyey += dy;
 	eyez += dirz*speed;
 
+	//stop moving - remove this if you want automat move
+	angular_speed = 0;
+	speed = 0;
+	dy = 0;
+	dx = 0;
+
 	// (8) PUT CONTENT HERE
 
 	glutPostRedisplay(); //-> display
@@ -160,22 +166,22 @@ void special(int key, int x, int y)
 	switch (key)
 	{
 	case GLUT_KEY_LEFT:
-		angular_speed += 0.005;
+		angular_speed += 0.05;
 		break;
 	case GLUT_KEY_RIGHT:
-		angular_speed -= 0.005;
+		angular_speed -= 0.05;
 		break;
 	case GLUT_KEY_UP:
-		speed += 0.005;
+		speed += 0.5;
 		break;
 	case GLUT_KEY_DOWN:
-		speed -= 0.005;
+		speed -= 0.5;
 		break;
 	case GLUT_KEY_PAGE_UP:
-		dy += 0.005;
+		dy += 0.5;
 		break;
 	case GLUT_KEY_PAGE_DOWN:
-		dy -= 0.005;
+		dy -= 0.5;
 		break;
 		// (12) add here
 	}
@@ -200,7 +206,7 @@ void main(int argc, char* argv[])
 	glutKeyboardFunc(keyboard); // for ascii keys
 	glutSpecialFunc(special); // for special keys
 
-	// (13) CALL TO NEW METHOD HERE (like menu)
+							  // (13) CALL TO NEW METHOD HERE (like menu)
 
 	init();
 
